@@ -15,8 +15,8 @@ return new class extends Migration
 
         Schema::create('demineurs', function (Blueprint $table) {
             $table->id('id_demineur');
-            $table->integer('demineur_level');
-            $table->string('demineur_table');
+            $table->integer('level');
+            $table->string('table');
         });
 
         Schema::enableForeignKeyConstraints();

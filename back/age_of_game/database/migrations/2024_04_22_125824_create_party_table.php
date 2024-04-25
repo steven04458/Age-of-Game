@@ -19,10 +19,10 @@ return new class extends Migration
             $table->foreign('id_user')->references('id_user')->on('users');
             $table->integer('id_game');
             $table->foreign('id_game')->references('id_demineur')->on('demineurs');
-            $table->string('party_type');
-            $table->bigInteger('party_start_time_stamp');
-            $table->bigInteger('party_end_time_stamp');
-            $table->integer('party_status');
+            $table->string('type');
+            $table->bigInteger('start_time_stamp');
+            $table->bigInteger('end_time_stamp');
+            $table->integer('status');
         });
 
         Schema::enableForeignKeyConstraints();

@@ -16,9 +16,9 @@ class UserSeeder extends Seeder
         $userData = ['joe', 'secure', 0];
   
         DB::table('users')->insert([
-            'user_name' => $userData[0],
-            'user_password' => Hash::make($userData[1]),
-            'user_score' => $userData[2]
+            'name' => $userData[0],
+            'password' => Hash::make($userData[1]),
+            'score' => $userData[2]
         ]);
     
     }
