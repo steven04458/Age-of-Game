@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Laravel\Sanctum\HasApiTokens;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -13,8 +15,8 @@ class UserController extends Controller
             'password' => ['required']
         ])->validate();
     
-        $user = Users::where('user_name', request('name'))->first();
-        if ($user && Hash::check(request('password'), $user->user_password)) {
+        $user = User::where('name', request('name'))->first();
+        if ($user && Hash::check(request('password'), $user->password)) {
             $token = $user->createToken(time())->plainTextToken;
 
             return response()->json(['status' => 'success', 'token' => $token], 200);
