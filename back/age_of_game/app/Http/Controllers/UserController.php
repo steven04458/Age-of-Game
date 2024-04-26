@@ -19,7 +19,7 @@ class UserController extends Controller
         if ($user && Hash::check(request('password'), $user->password)) {
             $token = $user->createToken(time())->plainTextToken;
 
-            return response()->json(['status' => 'success', 'token' => $token], 200);
+            return response()->json(['status' => 'success', 'token' => $token, 'name' => $user->name, 'score' => $user->score], 200);
         }
         return response()->json(['error' => false], 401);
     }
