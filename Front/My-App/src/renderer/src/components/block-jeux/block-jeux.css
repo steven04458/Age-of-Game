@@ -1,0 +1,23 @@
+.blockJeux {
+    height: 300px;
+    width: 250px;
+    border-radius: 20px;
+    background-color: var(--color-background-soft);
+    display: block;
+    padding: 0.5%;
+    margin: 10px;
+    
+}
+
+.imgBlock {
+    height: 140px;
+    width: 90%;
+    background-color: var(--ev-c-gray-1);
+    margin: 5%;
+    border-radius: 15px;
+}
+
+.blockJeux h2 {
+    display: flex;
+    justify-content: center;
+}

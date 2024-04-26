@@ -1,0 +1,28 @@
+.BarreLeft {
+    width: 10%;
+    height: 100%;
+    background-color: var(--color-background-mute);
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+}
+.CompteUser {
+    display: flex;
+    padding-top: 10px;
+}
+.CompteUser img {
+    width: 50px;
+}
+.column-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.separator {
+    align-items: center;
+    width: 80%;
+    height: 2px;
+    background-color: var(--ev-c-gray-1);
+    margin: 20px;
+}
