@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\controllers\leaderboardController;
 use App\Http\controllers\LaunchParty;
+use App\Http\controllers\EndParty;
 
 Route::post('/register', [UserController::class, 'register']);
 
