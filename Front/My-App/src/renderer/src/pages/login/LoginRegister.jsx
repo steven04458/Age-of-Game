@@ -1,42 +1,55 @@
 import "./LoginRegister.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Navigate } from "react-router-dom";
 
 const LogReg = () => {
-  const url = "http://localhost:8000/api";
-  const [activeForm, setActiveForm] = useState('login');
+  const url = "http://127.0.0.1:8000/";
+  const [activeForm, setActiveForm] = useState("login");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [loggedIn, setLoggedIn] = useState(false);
+
   const switchForm = (form) => {
     setActiveForm(form);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-  };
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-
-  const [errorMessageRegister, setErrorMessageRegister] = useState(null);
-
-
-  async function isUserExist() {
-    const result = await axios.post(url + "/accounts/isvalid", {
-      email: email,
-      password: password,
-    });
-    return result;
-  }
-
-  async function handleSubmitRegister() {
-    if (!isUserExist) {
-      const result = await axios.post(url + "/accounts/create", {
-        email: email,
-        password: password,
-      });
-      return result;
-    } else {
-      setErrorMessageRegister("This email is already register");
+    try {
+      if (activeForm === "login") {
+        const response = await axios.post(`${url}api/login`, {
+          name: email,
+          password: password,
+        });
+        const { status, data } = response;
+        if (status === 200) {
+          const { token, name } = data; // Supposons que votre jeton soit renvoyé dans la réponse sous la clé "token"
+          // Faites quelque chose avec le token, tel que le stocker dans localStorage
+          localStorage.setItem("token", token);
+          localStorage.setItem("username", name);
+          // Définir loggedIn sur true pour rediriger l'utilisateur
+          setLoggedIn(true);
+        }
+      } else {
+        const response = await axios.post(`${url}api/register`, {
+          name: email,
+          password: password,
+          confirmPassword: confirmPassword,
+        });
+        // Gérer la réponse d'inscription ici
+      }
+    } catch (error) {
+      setErrorMessage(error.response.data.message);
+      console.log(error.response.status);
     }
+  };
+
+  // Si loggedIn est true, redirigez l'utilisateur vers une autre page
+  if (loggedIn) {
+    return <Navigate to="/App" />;
   }
 
   return (
@@ -137,7 +150,7 @@ const LogReg = () => {
               <button
                 type="submit"
                 className="btn-signup"
-                onClick={handleSubmitRegister}
+                // onClick={handleSubmitRegister}
               >
                 Continue
               </button>

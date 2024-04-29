@@ -15,6 +15,12 @@
     background-color: var(--ev-c-gray-1);
     margin: 5%;
     border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.imgBlock img {
+    width: 50%;
 }
 
 .blockJeux h2 {

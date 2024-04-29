@@ -9,10 +9,6 @@ function App() {
       <BarreNav></BarreNav>
       <div className='content'>
         <BlockJeux></BlockJeux>
-        <BlockJeux></BlockJeux>
-        <BlockJeux></BlockJeux>
-        <BlockJeux></BlockJeux>
-        <BlockJeux></BlockJeux>
       </div>
     </>
   )

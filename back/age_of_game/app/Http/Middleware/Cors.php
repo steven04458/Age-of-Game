@@ -18,6 +18,8 @@ class Cors
     public function handle($request, Closure $next)
     {
         return $next($request)
-            ->header('Access-Control-Allow-Origin', '*');
+            // ->header('Access-Control-Allow-Origin', '*');
+            ->header('Content-Security-Policy', "default-src 'self'; connect-src 'self' http://127.0.0.1:8000");
+
     }
 }
