@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('demineur', function (Blueprint $table) {
+        Schema::create('demineurs', function (Blueprint $table) {
             $table->id('id_demineur');
-            $table->integer('demineur_level');
-            $table->string('demineur_table');
+            $table->integer('level');
+            $table->string('table');
         });
 
         Schema::enableForeignKeyConstraints();
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('demineur');
+        Schema::dropIfExists('demineurs');
     }
 };
