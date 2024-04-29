@@ -11,7 +11,7 @@ Route::post('/login',[UserController::class, 'login']);
 
 Route::post('/end_party', [EndParty::class, 'endParty'])->middleware('auth:sanctum');
 
-Route::get('/launch', [LaunchParty::class], );
+Route::get('/launch', [LaunchParty::class, 'launchParty'])->middleware('auth:sanctum');
 
 Route::get('/leaderboard', [LeaderboardController::class, 'getLeaderboard'])->middleware('auth:sanctum');
 
