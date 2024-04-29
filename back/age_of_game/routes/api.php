@@ -6,6 +6,8 @@ use App\Http\controllers\leaderboardController;
 
 Route::post('/login',[UserController::class, 'login']);
 
+Route::post('/end_party', [EndParty::class, 'endParty'])->middleware('auth:sanctum');
+
 Route::get('/leaderboard', [LeaderboardController::class, 'getLeaderboard'])->middleware('auth:sanctum');
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
