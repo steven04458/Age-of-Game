@@ -2,16 +2,14 @@
 
 namespace App\Models;
 
-use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class Party extends Model
 {
-    use HasApiTokens;
     public $timestamps = false;
-    protected $primaryKey = 'id_user';
+    protected $primaryKey = 'id_party';
 
-    protected $table = "users";
+    protected $table = "partys";
     use HasFactory;
 }
