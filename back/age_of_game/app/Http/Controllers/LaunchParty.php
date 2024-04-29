@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Demineur;
+use App\Models\Party;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -77,6 +78,16 @@ class LaunchParty extends Controller
         $demineur->level = $level;
         $demineur->table = $csvTable;
         $demineur->save();
-        return response()->json(['table' => $csvTable], 200);
+        
+        $party = new Party;
+        $party->id_user = $user->id_user;
+        $party->id_game = $demineur->id_demineur;
+        $party->type = "demineur";
+        $party->start_time_stamp = 0;
+        $party->end_time_stamp = 0;
+        $party->status = 0;
+        $party->save();
+        
+        return response()->json(['id_party' => $party->id_party, 'table' => $csvTable], 200);
     }
 }
