@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\controllers\leaderboardController;
 
+Route::post('/register', [UserController::class, 'register']);
+
 Route::post('/login',[UserController::class, 'login']);
 
 Route::post('/end_party', [EndParty::class, 'endParty'])->middleware('auth:sanctum');

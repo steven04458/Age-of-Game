@@ -23,4 +23,24 @@ class UserController extends Controller
         }
         return response()->json(['error' => false], 401);
     }
+    public function register()
+    {
+        validator(request()->all(), [
+            'name' => ['required'],
+            'password' => ['required']
+        ])->validate();
+        $uniqueNameCheck = User::where('name', request('name'))->exists();
+        if(!$uniqueNameCheck){
+            $user = new User;
+            $user->name = request('name');
+            $user->password = Hash::make(request('password'));
+            $user->score = 0;
+            $user->save();
+            return response()->json(['status' => 'success'], 200);
+        }else{
+            return response()->json(['status'=> 'failed', 'message' => 'username already use'], 401);
+        }
+       
+    }
+    
 }
