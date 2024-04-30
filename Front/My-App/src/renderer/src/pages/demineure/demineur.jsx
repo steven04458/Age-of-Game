@@ -77,10 +77,10 @@ function Demineur() {
     if (numAdjacentFlags === Number(clickedCell.value)) {
       revealCellsAround(rowIndex, colIndex);
     }
-    // if (clickedCell.value === '-1') {
-    //   endParty();
-    //   return;
-    // }
+    if (clickedCell.value === '-1') {
+      endParty();
+      return;
+    }
     const revealEmptyCells = (row, col) => {
       // Vérifiez les cases autour de la case actuelle (dans un rayon de 1 case)
       for (let i = row - 1; i <= row + 1; i++) {
