@@ -1,0 +1,21 @@
+.jeux {
+    height: auto;
+    width: 500px;
+    border-radius: 20px;
+    background-color: var(--color-background-soft);
+    padding: 0.5%;
+    margin: 10px;
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+}
+.row {
+    width: 30px;
+    display: flex;
+}
+.cell {
+    width: 30px;
+}
+img {
+    width: 30px;
+}

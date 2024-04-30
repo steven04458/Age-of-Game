@@ -26,11 +26,10 @@ const LogReg = () => {
         });
         const { status, data } = response;
         if (status === 200) {
-          const { token, name } = data; // Supposons que votre jeton soit renvoyé dans la réponse sous la clé "token"
-          // Faites quelque chose avec le token, tel que le stocker dans localStorage
+          const { token, name, score } = data; 
           localStorage.setItem("token", token);
           localStorage.setItem("username", name);
-          // Définir loggedIn sur true pour rediriger l'utilisateur
+          localStorage.setItem("score", score);
           setLoggedIn(true);
         }
       } else {
@@ -39,7 +38,6 @@ const LogReg = () => {
           password: password,
           confirmPassword: confirmPassword,
         });
-        // Gérer la réponse d'inscription ici
       }
     } catch (error) {
       setErrorMessage(error.response.data.message);
