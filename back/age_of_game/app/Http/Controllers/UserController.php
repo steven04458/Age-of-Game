@@ -5,16 +5,19 @@ use Laravel\Sanctum\HasApiTokens;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
     public function login()
     {
-        validator(request()->all(), [
+        $validator = Validator::make(request()->all(), [
             'name' => ['required'],
             'password' => ['required']
-        ])->validate();
-    
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 400);
+        }
         $user = User::where('name', request('name'))->first();
         if ($user && Hash::check(request('password'), $user->password)) {
             $token = $user->createToken(time())->plainTextToken;
@@ -25,10 +28,13 @@ class UserController extends Controller
     }
     public function register()
     {
-        validator(request()->all(), [
+        $validator = Validator::make(request()->all(), [
             'name' => ['required'],
             'password' => ['required']
-        ])->validate();
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 400);
+        }
         $uniqueNameCheck = User::where('name', request('name'))->exists();
         if(!$uniqueNameCheck){
             $user = new User;
